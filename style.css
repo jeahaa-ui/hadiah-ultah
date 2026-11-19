@@ -1,0 +1,53 @@
+:root{--malam:#2b1033;--ungu:#4a1d55;--mawar:#ff5e8e;--blush:#ffd6e2;--emas:#ffd27a;--krem:#fff4ec}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{font-family:'Fraunces',Georgia,serif;color:var(--krem);background:radial-gradient(120% 90% at 50% 0%,var(--ungu),var(--malam) 70%) fixed;overflow-x:hidden;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.page{display:none;min-height:100svh;padding:24px 18px;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;z-index:2}
+.page.active{display:flex;animation:masuk .8s ease both}
+@keyframes masuk{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.kecil{font-family:'Caveat',cursive;font-size:1.6rem;color:var(--emas);margin-bottom:10px}
+h1{font-weight:600;font-size:clamp(1.7rem,8vw,2.6rem);line-height:1.2;margin:18px 0}
+.btn{font:inherit;font-size:1.05rem;padding:13px 26px;border-radius:999px;border:2px solid var(--blush);background:transparent;color:var(--krem);cursor:pointer;transition:transform .25s,background .25s}
+.btn:active{transform:scale(.94)}
+.btn.utama{background:var(--mawar);border-color:var(--mawar);box-shadow:0 8px 28px #ff5e8e66}
+.pilihan{display:flex;gap:14px;align-items:center;justify-content:center;min-height:70px}
+#terima{transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+
+/* kado */
+.kado{position:relative;width:150px;height:150px;background:none;border:0;cursor:pointer;animation:goyang 2.2s ease-in-out infinite}
+.kotak{position:absolute;bottom:0;left:10px;right:10px;height:95px;background:var(--mawar);border-radius:8px}
+.tutup{position:absolute;top:18px;left:0;right:0;height:140px;height:36px;background:#ff7fa6;border-radius:8px;z-index:2;transition:transform .7s}
+.pita{position:absolute;bottom:0;left:calc(50% - 11px);width:22px;height:131px;background:var(--emas);z-index:3}
+.pita::before{content:"🎀";position:absolute;top:-8px;left:-14px;font-size:3rem;line-height:1}
+.kado.buka .tutup{transform:translateY(-70px) rotate(-18deg)}
+@keyframes goyang{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg) translateY(-6px)}}
+
+/* ucapan */
+.kartu{max-width:420px}
+.judul{font-style:italic;font-size:clamp(2rem,10vw,3.2rem);background:linear-gradient(90deg,var(--blush),var(--emas),var(--mawar));-webkit-background-clip:text;background-clip:text;color:transparent;animation:denyut 2.5s ease-in-out infinite}
+@keyframes denyut{50%{transform:scale(1.05)}}
+.nama{font-family:'Caveat',cursive;font-size:2.4rem;color:var(--blush);margin-bottom:14px}
+.ketik{min-height:7.5em;line-height:1.7;margin-bottom:20px;opacity:.95}
+
+/* album */
+.atas{margin:14px 0 6px}.atas h2{font-family:'Caveat',cursive;font-size:3rem;color:var(--emas)}.atas p{opacity:.8}
+#album{justify-content:flex-start}
+.grid{width:100%;max-width:560px;columns:2;column-gap:14px;padding:20px 4px}
+.pol{break-inside:avoid;margin-bottom:22px;background:#fffaf5;padding:8px 8px 30px;border-radius:4px;box-shadow:0 12px 26px #0006;transform:rotate(var(--r));cursor:pointer;position:relative;opacity:0;animation:muncul .7s ease forwards,melayang var(--d) ease-in-out infinite alternate;animation-delay:var(--w),calc(var(--w) + .7s);transition:box-shadow .3s}
+.pol img{width:100%;display:block;border-radius:2px;pointer-events:none}
+.pol span{position:absolute;bottom:5px;left:0;right:0;color:#7a3a55;font-family:'Caveat',cursive;font-size:1.25rem}
+.pol:active{box-shadow:0 4px 12px #0008}
+@keyframes muncul{from{opacity:0;transform:translateY(60px) rotate(calc(var(--r)*3)) scale(.8)}to{opacity:1;transform:rotate(var(--r))}}
+@keyframes melayang{from{transform:translateY(0) rotate(var(--r))}to{transform:translateY(-9px) rotate(calc(var(--r)*-.6))}}
+.penutup{max-width:440px;padding:10px 6px 40px;line-height:1.7}.penutup .btn{margin-top:20px}
+
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:100;background:#1a0820ee;display:flex;align-items:center;justify-content:center;padding:20px}
+.lightbox[hidden]{display:none}
+.lightbox figure{max-width:100%;text-align:center;animation:masuk .4s both}
+.lightbox img{max-width:88vw;max-height:72svh;border:8px solid #fffaf5;border-radius:4px;box-shadow:0 20px 60px #000a}
+figcaption{font-family:'Caveat',cursive;font-size:1.9rem;margin-top:12px;color:var(--blush)}
+.lightbox button{position:absolute;background:#ffffff1f;color:#fff;border:0;border-radius:50%;width:46px;height:46px;font-size:1.6rem;cursor:pointer;z-index:2}
+.x{top:max(16px,env(safe-area-inset-top));right:16px}.kiri{left:6px}.kanan{right:6px}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Selamat Ulang Tahun, Aliza 💕</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="fx"></canvas>
+
+<!-- HALAMAN 1: pilih hadiah -->
+<section id="gate" class="page active">
+  <p class="kecil">Ada sesuatu untuk Aliza Silma Dina…</p>
+  <button id="kado" class="kado" aria-label="Hadiah">
+    <span class="tutup"></span><span class="kotak"></span><span class="pita"></span>
+  </button>
+  <h1 id="gateText">Kamu mau terima hadiah ini?</h1>
+  <div class="pilihan">
+    <button id="terima" class="btn utama">Terima 🎁</button>
+    <button id="tolak" class="btn">Tolak</button>
+  </div>
+</section>
+
+<!-- HALAMAN 2: ucapan -->
+<section id="ucapan" class="page">
+  <div class="kartu">
+    <p class="kecil">untuk pacarku tersayang</p>
+    <h1 class="judul">Selamat Ulang Tahun<br>Sayang 💖</h1>
+    <h2 class="nama">Aliza Silma Dina</h2>
+    <p id="ketik" class="ketik"></p>
+    <button id="bukaAlbum" class="btn utama">Lihat album kita 📸</button>
+  </div>
+</section>
+
+<!-- HALAMAN 3: album -->
+<section id="album" class="page">
+  <header class="atas">
+    <h2>Album Kita</h2>
+    <p>Ketuk foto untuk membukanya 💕</p>
+  </header>
+  <div id="grid" class="grid"></div>
+  <footer class="penutup">
+    <p>Selamat ulang tahun, sayang. Terima kasih sudah jadi tempat pulang terbaikku. Semoga semua doamu terkabul dan kita terus bersama. Aku sayang kamu 💗</p>
+    <button id="ulang" class="btn">Buka kado lagi 🎁</button>
+  </footer>
+</section>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button class="x" id="tutup" aria-label="Tutup">✕</button>
+  <button class="nav kiri" id="prev" aria-label="Sebelumnya">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="nav kanan" id="next" aria-label="Berikutnya">›</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
