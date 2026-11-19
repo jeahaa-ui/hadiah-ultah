@@ -1,8 +1,8 @@
 const $=s=>document.querySelector(s);
 const fotos=[
  ["foto1","Berdua dengan batik 🍎"],["foto2","Tugas PPLG bareng"],["foto3","Penari paling cantik 💃"],
- ["foto4","Jalan-jalan di Bali"],["foto5","Taman bunga 🌸"],["foto6","Pura di tepi danau"],
- ["foto7","Langit cerah, hati cerah"],["foto8","Gaya andalanku"],["foto9","Cantik berseri ✨"],
+ ["foto4","Jalan-jalan di Bali"],["foto5","Berdua di Bali 🌸"],["foto6","Pura di tepi danau"],
+ ["foto7","Langit cerah, hati cerah"],["foto9","Cantik berseri ✨"],
  ["foto10","Malam yang hangat"],["foto11","Selfie favorit 😚"],["foto12","Seragam kita 💙"]
 ];
 const pesan="Hari ini hari spesialmu. Terima kasih sudah sabar, sudah ada, dan selalu membuatku tersenyum. Aku harap tahun ini penuh bahagia, sehat, dan semua mimpimu pelan-pelan jadi nyata. Aku sayang kamu. 💕";
@@ -41,9 +41,31 @@ $('#tolak').onclick=()=>{
 };
 $('#terima').onclick=()=>{
   $('#kado').classList.add('buka');ledakan(innerWidth/2,innerHeight/2,60);
-  setTimeout(()=>{ke('#ucapan');ketik();ledakan(innerWidth/2,innerHeight/3,50)},1100);
+  setTimeout(()=>{ke('#kue');mulaiKue()},1100);
 };
 $('#kado').onclick=()=>ledakan(innerWidth/2,innerHeight/2.4,14);
+
+/* ---------- halaman kue: tap untuk tiup lilin ---------- */
+const JML=5;let nyala=JML,kueSiap=false;
+function mulaiKue(){
+  const w=$('#lilinWrap');w.innerHTML='';nyala=JML;kueSiap=true;
+  for(let i=0;i<JML;i++){w.insertAdjacentHTML('beforeend','<div class="lilin"><i class="api"></i></div>')}
+  $('#kueText').textContent='Tap tap layar untuk meniup lilinnya 🎂';$('#sisa').textContent=JML+' lilin menyala';
+}
+$('#kue').addEventListener('pointerdown',e=>{
+  if(!kueSiap||nyala<=0)return;
+  const t=document.createElement('div');t.className='tiup';t.textContent='💨';
+  t.style.left=(e.clientX-20)+'px';t.style.top=(e.clientY-20)+'px';document.body.appendChild(t);setTimeout(()=>t.remove(),700);
+  navigator.vibrate&&navigator.vibrate(40);
+  const hidup=[...document.querySelectorAll('.api:not(.mati)')];
+  hidup.forEach(a=>{a.classList.add('goyang');setTimeout(()=>a.classList.remove('goyang'),250)});
+  const a=hidup[Math.random()*hidup.length|0];a.classList.add('mati');
+  a.parentElement.insertAdjacentHTML('beforeend','<span class="asap">💨</span>');
+  nyala--;$('#sisa').textContent=nyala>0?nyala+' lilin lagi, tap terus!':'Semua lilin padam ✨';
+  if(nyala===0){kueSiap=false;$('#kueText').textContent='Semoga permintaanmu terkabul 💖';
+    ledakan(innerWidth/2,innerHeight/2,80);
+    setTimeout(()=>{ke('#ucapan');ketik();ledakan(innerWidth/2,innerHeight/3,50)},2200)}
+});
 
 /* ---------- halaman 2: ketik ucapan ---------- */
 function ketik(){const el=$('#ketik');el.textContent='';let i=0;
@@ -51,12 +73,12 @@ function ketik(){const el=$('#ketik');el.textContent='';let i=0;
 $('#bukaAlbum').onclick=()=>{ke('#album');ledakan(innerWidth/2,innerHeight*.6,40)};
 
 /* ---------- halaman 3: album ---------- */
-const grid=$('#grid');
+const grid=$('#grid');const cols=[document.createElement('div'),document.createElement('div')];cols.forEach(c=>{c.className='col';grid.appendChild(c)});
 fotos.forEach(([f,cap],i)=>{
  const d=document.createElement('div');d.className='pol';
  d.style.cssText=`--r:${(Math.random()*8-4).toFixed(1)}deg;--d:${(2.4+Math.random()*2).toFixed(1)}s;--w:${(i*.12).toFixed(2)}s`;
- d.innerHTML=`<img src="assets/foto/${f}.jpg" alt="${cap}" loading="lazy"><span>${cap}</span>`;
- d.onclick=e=>{ledakan(e.clientX,e.clientY,14);buka(i)};grid.appendChild(d)});
+ d.innerHTML=`<img src="assets/foto/${f}.jpg" alt="${cap}"><span>${cap}</span>`;
+ d.onclick=e=>{ledakan(e.clientX,e.clientY,14);buka(i)};cols[i%2].appendChild(d)});
 let cur=0;
 function buka(i){cur=(i+fotos.length)%fotos.length;$('#lbImg').src=`assets/foto/${fotos[cur][0]}.jpg`;$('#lbCap').textContent=fotos[cur][1];$('#lightbox').hidden=false}
 $('#tutup').onclick=()=>$('#lightbox').hidden=true;

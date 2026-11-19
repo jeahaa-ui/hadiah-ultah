@@ -33,8 +33,9 @@ h1{font-weight:600;font-size:clamp(1.7rem,8vw,2.6rem);line-height:1.2;margin:18p
 /* album */
 .atas{margin:14px 0 6px}.atas h2{font-family:'Caveat',cursive;font-size:3rem;color:var(--emas)}.atas p{opacity:.8}
 #album{justify-content:flex-start}
-.grid{width:100%;max-width:560px;columns:2;column-gap:14px;padding:20px 4px}
-.pol{break-inside:avoid;margin-bottom:22px;background:#fffaf5;padding:8px 8px 30px;border-radius:4px;box-shadow:0 12px 26px #0006;transform:rotate(var(--r));cursor:pointer;position:relative;opacity:0;animation:muncul .7s ease forwards,melayang var(--d) ease-in-out infinite alternate;animation-delay:var(--w),calc(var(--w) + .7s);transition:box-shadow .3s}
+.grid{width:100%;max-width:560px;display:flex;gap:14px;align-items:flex-start;padding:20px 4px}
+.col{flex:1;min-width:0;display:flex;flex-direction:column}
+.pol{margin-bottom:22px;background:#fffaf5;padding:8px 8px 30px;border-radius:4px;box-shadow:0 12px 26px #0006;transform:rotate(var(--r));cursor:pointer;position:relative;animation:muncul .7s ease both,melayang var(--d) ease-in-out infinite alternate;animation-delay:var(--w),calc(var(--w) + .7s);transition:box-shadow .3s}
 .pol img{width:100%;display:block;border-radius:2px;pointer-events:none}
 .pol span{position:absolute;bottom:5px;left:0;right:0;color:#7a3a55;font-family:'Caveat',cursive;font-size:1.25rem}
 .pol:active{box-shadow:0 4px 12px #0008}
@@ -51,3 +52,24 @@ figcaption{font-family:'Caveat',cursive;font-size:1.9rem;margin-top:12px;color:v
 .lightbox button{position:absolute;background:#ffffff1f;color:#fff;border:0;border-radius:50%;width:46px;height:46px;font-size:1.6rem;cursor:pointer;z-index:2}
 .x{top:max(16px,env(safe-area-inset-top));right:16px}.kiri{left:6px}.kanan{right:6px}
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important}}
+
+/* kue ulang tahun */
+#kue{user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.kue{position:relative;width:230px;height:230px;margin:34px 0 4px}
+.piring{position:absolute;bottom:0;left:-20px;right:-20px;height:16px;background:#f3e6ee;border-radius:50%;box-shadow:0 8px 20px #0007}
+.lapis{position:absolute;left:0;right:0;border-radius:14px 14px 10px 10px}
+.bawah2{bottom:8px;height:92px;background:linear-gradient(#ff7fa6,#ff5e8e);box-shadow:inset 0 -8px 0 #0001}
+.atas2{bottom:96px;height:70px;left:34px;right:34px;background:linear-gradient(#fff4ec,#ffd6e2);z-index:2}
+.atas2::before,.bawah2::before{content:"";position:absolute;top:0;left:0;right:0;height:18px;border-radius:14px 14px 50% 50%/14px 14px 100% 100%;background:#fffaf5}
+.bawah2::after{content:"🍓 🍓 🍓 🍓 🍓";position:absolute;top:30px;left:0;right:0;font-size:1.1rem;letter-spacing:6px}
+.lilinWrap{position:absolute;bottom:160px;left:46px;right:46px;display:flex;justify-content:space-between;z-index:3}
+.lilin{position:relative;width:12px;height:46px;border-radius:3px;background:repeating-linear-gradient(135deg,#ffd27a 0 7px,#fff 7px 14px)}
+.api{position:absolute;left:50%;bottom:100%;width:14px;height:24px;margin-left:-7px;margin-bottom:3px;background:radial-gradient(circle at 50% 70%,#fff 10%,#ffd27a 45%,#ff7a3d 100%);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;box-shadow:0 0 18px 6px #ffb34766;transform-origin:50% 100%;animation:api .35s ease-in-out infinite alternate}
+@keyframes api{from{transform:scale(1,1) rotate(-4deg)}to{transform:scale(.88,1.12) rotate(4deg)}}
+.api.goyang{animation-duration:.08s}
+.api.mati{animation:padam .45s forwards}
+@keyframes padam{to{transform:scale(0);opacity:0}}
+.asap{position:absolute;left:50%;bottom:100%;margin-left:-8px;font-size:1.3rem;opacity:0;animation:asap 1.6s ease-out forwards}
+@keyframes asap{0%{opacity:.8;transform:translateY(0) scale(.6)}100%{opacity:0;transform:translateY(-60px) scale(1.4)}}
+.tiup{position:fixed;font-size:2.4rem;pointer-events:none;z-index:60;animation:tiup .7s ease-out forwards}
+@keyframes tiup{from{opacity:1;transform:translate(0,0) scale(.7)}to{opacity:0;transform:translate(-30px,-40px) scale(1.5)}}
